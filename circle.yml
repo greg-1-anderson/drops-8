@@ -7,6 +7,7 @@ machine:
     # DB config. Using default CircleCI's database.
     TERMINUS_ENV: ci-$CIRCLE_BUILD_NUM
     TERMINUS_SITE: ci-drops-8
+    PATH: $PATH:~/.composer/vendor/bin
 
 dependencies:
   cache_directories:
@@ -18,7 +19,7 @@ dependencies:
     - echo "date.timezone = 'US/Central'"  >  /opt/circleci/php/7.0.7/etc/conf.d/xdebug.ini
   override:
     - composer global require "hirak/prestissimo:^0.3"
-    - composer global require pantheon-systems/terminus ">=0.13.3"
+    - composer global require "pantheon-systems/terminus:>=0.13.3"
     - composer global require drush/drush:8.*
   post:
     - terminus auth login --machine-token=$TERMINUS_TOKEN

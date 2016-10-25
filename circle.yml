@@ -21,6 +21,8 @@ dependencies:
     - composer global require "hirak/prestissimo:^0.3"
     - composer global require "pantheon-systems/terminus:>=0.13.3"
     - composer global require drush/drush:8.*
+    - composer config repositories.ci-drops-8 vcs git@github.com:pantheon-systems/ci-drops-8.git
+    - composer global require pantheon-systems/ci-drops-8
   post:
     - terminus auth login --machine-token=$TERMINUS_TOKEN
 test:

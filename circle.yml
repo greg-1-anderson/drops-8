@@ -25,5 +25,5 @@ dependencies:
 test:
   pre:
   override:
-    - TERMINUS_ENV=ci-$CIRCLE_BUILD_NUM $TESTING_DIR/vendor/bin/create-pantheon-multidev
-    - cd $TESTING_DIR && TERMINUS_ENV=ci-$CIRCLE_BUILD_NUM ./vendor/bin/run-behat
+    - TERMINUS_ENV=ci-$CIRCLE_BUILD_NUM $TESTING_DIR/scripts/create-pantheon-multidev
+    - cd $TESTING_DIR && TERMINUS_ENV=ci-$CIRCLE_BUILD_NUM ./scripts/run-behat

@@ -30,6 +30,7 @@ dependencies:
     - terminus auth login --machine-token=$TERMINUS_TOKEN
     - git remote add pantheon $(terminus site connection-info --field=git_url)
     - git fetch pantheon
+    - terminus site create-env --to-env=$TERMINUS_ENV --from-env=dev
     - git checkout -b $TERMINUS_ENV
     - git push pantheon $TERMINUS_ENV -f
 test:
@@ -38,4 +39,5 @@ test:
     # Make a new multidev env from a vanilla D8 site.
     #- cd tests/circle-scripts && ./create-fresh-d8-site.sh
   override:
+    - cd $TESTING_DIR && ./vendor/bin/behat
    # - cd tests/circle-scripts && ./verify-solr.sh

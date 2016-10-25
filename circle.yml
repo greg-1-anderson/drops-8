@@ -28,9 +28,9 @@ dependencies:
     #- composer global require pantheon-systems/ci-drops-8
   post:
     - terminus auth login --machine-token=$TERMINUS_TOKEN
+    - terminus site create-env --to-env=$TERMINUS_ENV --from-env=dev
     - git remote add pantheon $(terminus site connection-info --field=git_url)
     - git fetch pantheon
-    - terminus site create-env --to-env=$TERMINUS_ENV --from-env=dev
     - git checkout -b $TERMINUS_ENV
     - git push pantheon $TERMINUS_ENV -f
 test:

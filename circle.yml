@@ -28,6 +28,10 @@ dependencies:
     #- composer global require pantheon-systems/ci-drops-8
   post:
     - terminus auth login --machine-token=$TERMINUS_TOKEN
+    - git remote add pantheon $(terminus site connection-info --field=git_url)
+    - git fetch pantheon
+    - git checkout -b $TERMINUS_ENV
+    - git push pantheon $TERMINUS_ENV -f
 test:
   pre:
     #- ./vendor/bin/phpcs --report=full --extensions=php,module,inc,theme,info,install --standard=vendor/drupal/coder/coder_sniffer/Drupal . --ignore=vendor,modules,core,drush,patches,tests
